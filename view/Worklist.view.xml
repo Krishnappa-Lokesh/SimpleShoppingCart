@@ -1,0 +1,215 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar"
+	controllerName="url.controller.Worklist">
+	<semantic:FullscreenPage id="page" title="{i18n>worklistViewTitle}">
+		<semantic:content>
+			<Panel id="headerPanel">
+				<content>
+					<ObjectListItem type="Active" title="{modelGetItems>OBJECTID}" number="Pending Approval" numberState="Success" id="shoppingCartHeader">
+						<attributes>
+							<ObjectAttribute title="Description" text="{modelGetItems>DESCRIPTION}" active="false"/>
+						</attributes>
+						<attributes>
+							<ObjectAttribute title="Document Type" text="ECPO" active="false"/>
+						</attributes>
+						<firstStatus>
+							<ObjectStatus title="Created on" text="{modelGetItems>CREATEDON}" state="None"/>
+						</firstStatus>
+						<secondStatus>
+							<ObjectStatus title="Created by" text="{modelGetItems>USERNAME}" state="None"/>
+						</secondStatus>
+					</ObjectListItem>
+					<MessageStrip text="{modelGetItems>ERROR}" type="Error" showIcon="true" showCloseButton="false" class="sapUiMediumMarginBottom"
+						visible="{modelGetItems>ERROR_VISIBLE}"/>
+				</content>
+			</Panel>
+			<Panel id="deliveryAddressPanel" headerText="Delivery and Account Details" expandable="true">
+				<content>
+					<HBox width="100%" id="__hbox0">
+						<items>
+							<sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" id="__form0">
+								<sap.ui.layout.form:formContainers>
+									<sap.ui.layout.form:FormContainer title="Delivery Address" id="__container1">
+										<sap.ui.layout.form:formElements>
+											<sap.ui.layout.form:FormElement label="C/O" id="__element5">
+												<sap.ui.layout.form:fields>
+													<Text text="{modelGetItems>CAREOF}"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Address" id="__element8">
+												<sap.ui.layout.form:fields>
+													<Text text="{modelGetItems>ADDRESS}"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Building,Room,Floor" id="__element11">
+												<sap.ui.layout.form:fields>
+													<Text text="{modelGetItems>BRF}"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Location" id="__element12">
+												<sap.ui.layout.form:fields>
+													<Text text="{modelGetItems>LOC}"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Phone" id="__element13">
+												<sap.ui.layout.form:fields>
+													<Text text="{modelGetItems>PHONE}"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+										</sap.ui.layout.form:formElements>
+									</sap.ui.layout.form:FormContainer>
+								</sap.ui.layout.form:formContainers>
+								<sap.ui.layout.form:layout>
+									<sap.ui.layout.form:ResponsiveGridLayout id="__layout0" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1"
+										singleContainerFullSize="false"/>
+								</sap.ui.layout.form:layout>
+							</sap.ui.layout.form:Form>
+							<sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" id="__form2">
+								<sap.ui.layout.form:formContainers>
+									<sap.ui.layout.form:FormContainer id="__container2" title="Account Details">
+										<sap.ui.layout.form:formElements>
+											<sap.ui.layout.form:FormElement label="Account Category" id="__element14">
+												<sap.ui.layout.form:fields>
+													<Text text="{modelGetItems>ACCT_DESC}"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Account Assignment" id="__element9">
+												<sap.ui.layout.form:fields>
+													<Text text="{modelGetItems>ACC_ASS}"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="GL" id="__element10">
+												<sap.ui.layout.form:fields>
+													<Text text="{modelGetItems>GLACNT}"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+										</sap.ui.layout.form:formElements>
+									</sap.ui.layout.form:FormContainer>
+								</sap.ui.layout.form:formContainers>
+								<sap.ui.layout.form:layout>
+									<sap.ui.layout.form:ResponsiveGridLayout id="__layout1" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1"
+										singleContainerFullSize="false"/>
+								</sap.ui.layout.form:layout>
+							</sap.ui.layout.form:Form>
+						</items>
+					</HBox>
+					<!--<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" width="50%" editable="true" layout="ResponsiveGridLayout" id="__form1">
+						<sap.ui.layout.form:content>
+							<sap.ui.core:Title text="Delivery Address" id="__title0" emphasized="true"/>
+							<Label text="C/O" id="__label2" textDirection="LTR"/>
+							<Input width="100%" id="__input2" value="{modelGetItems>CAREOF}" editable="false"/>
+							<Label text="Address" id="__label3" textDirection="LTR"/>
+							<Input width="100%" id="__input4" value="{modelGetItems>ADDRESS}" editable="false"/>
+							<Label text="Building,Room and Floor" id="__label4" textDirection="LTR"/>
+							<Input width="100%" id="__input5" value="{modelGetItems>BRF}" editable="false"/>
+							<Label text="Location" id="__label5" textDirection="LTR"/>
+							<Input width="100%" id="__input6" value="{modelGetItems>LOC}" editable="false"/>
+							<Label text="Phone" id="__label6" textDirection="LTR"/>
+							<Input width="100%" id="__input7" value="{modelGetItems>PHONE}" editable="false"/>
+						</sap.ui.layout.form:content>
+					</sap.ui.layout.form:SimpleForm>-->
+				</content>
+			</Panel>
+			<Panel id="__panel0" headerText="Punchout Catalogs" backgroundDesign="Solid" width="auto" expandable="true" expanded="true">
+				<content>
+					<Button xmlns="sap.m" text="Amazon Catalog" width="auto" id="btnAmazon" press="onButtonPress"/>
+					<Button text="Refresh" icon="sap-icon://refresh" width="auto" id="btnRefresh" press="onRefresh"/>
+				</content>
+			</Panel>
+			<Table id="table" width="auto" mode="Delete" class="sapUiResponsiveMargin" items="{ path: 'modelGetItems>/get_itemSet' }"
+				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished" delete="onDelete">
+				<columns>
+					<Column id="nameColumn">
+						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					</Column>
+					<Column id="nameColumn1">
+						<Text text="{i18n>tableNameColumn1Title}" id="nameColumn1Title"/>
+						<!--<footer>
+							<Label text="Total Amount"/>
+						</footer>-->
+					</Column>
+					<Column id="nameColumn2">
+						<Text text="{i18n>tableNameColumn2Title}" id="nameColumn2Title"/>
+						<!--<footer>
+							<Label text="{modelGetItems>TOTAL_PRICE}" id="price_total"/>
+						</footer>-->
+					</Column>
+					<Column id="nameColumn3">
+						<Text text="{i18n>tableNameColumn3Title}" id="nameColumn3Title"/>
+					</Column>
+					<Column id="nameColumn4">
+						<Text text="{i18n>tableNameColumn4Title}" id="nameColumn4Title"/>
+					</Column>
+					<!--<Column id="nameColumn5">
+						<Text text="{i18n>tableNameColumn5Title}" id="nameColumn5Title"/>
+					</Column>-->
+					<!--	<Column id="nameColumn5">
+						<Text text="{i18n>tableNameColumn5Title}" id="nameColumn5Title"/>
+					</Column>
+					<Column id="nameColumn6">
+						<Text text="{i18n>tableNameColumn6Title}" id="nameColumn6Title"/>
+					</Column>
+					<Column id="nameColumn7">
+						<Text text="{i18n>tableNameColumn7Title}" id="nameColumn7Title"/>
+					</Column>-->
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{modelGetItems>PROD_DESC}"/>
+							<ObjectNumber number="{modelGetItems>VENDOR}"/>
+							<ObjectNumber number="{modelGetItems>PRICE}" unit="USD"/>
+							<Input ariaLabelledBy="__xmlview0--nameColumn3Title" width="50%" id="__input1" type="Number" value="{modelGetItems>QUANTITY}"
+								enabled="false" editable="false"/>
+							<!--<Input width="50%" value="{modelGetItems>QUANTITY}" type="Number"/>-->
+							<!--	<ObjectIdentifier title="{modelGetItems>VENDOR}"/>
+							<ObjectIdentifier title="{modelGetItems>PRICE}"/>-->
+							<ObjectNumber number="{modelGetItems>UNIT}"/>
+							<!--<ObjectIdentifier title="{modelGetItems>QUANTITY}"/>-->
+							<!--<ObjectIdentifier title="{modelGetItems>UNIT}"/>-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<VBox direction="Column" id="vboxTotal">
+				<items>
+					<!-- Item total -->
+					<sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" id="__form1">
+						<sap.ui.layout.form:formContainers>
+							<sap.ui.layout.form:FormContainer title="" id="__container0">
+								<sap.ui.layout.form:formElements>
+									<sap.ui.layout.form:FormElement label="Total Amount" id="lblTotalAmount">
+										<sap.ui.layout.form:fields>
+											<Input value="{modelGetItems>PRICE_TOTAL}" width="15%" editable="false" id="inputTotal"/>
+										</sap.ui.layout.form:fields>
+									</sap.ui.layout.form:FormElement>
+								</sap.ui.layout.form:formElements>
+							</sap.ui.layout.form:FormContainer>
+						</sap.ui.layout.form:formContainers>
+						<sap.ui.layout.form:layout>
+							<sap.ui.layout.form:ResponsiveGridLayout id="__layout2"/>
+						</sap.ui.layout.form:layout>
+					</sap.ui.layout.form:Form>
+				</items>
+			</VBox>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{worklistView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+		<semantic:saveAction/>
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="Order" id="orderButton" press="onOrder"/>
+		</semantic:positiveAction>
+		<!--	<semantic:cancelAction>
+			<semantic:CancelAction id="__action2"/>
+		</semantic:cancelAction>-->
+	</semantic:FullscreenPage>
+</mvc:View>
